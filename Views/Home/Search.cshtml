@@ -1,0 +1,29 @@
+﻿@*
+    Search view for TwitterSearchApp
+    
+    This view returns a list of tweets based on the search term entered by the user.
+*@
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+@foreach (var tweet in ViewBag.Tweets)
+{
+    <div class="card" style="width: 18rem">
+        <p>@ViewBag.Image</p>
+        @if (ViewBag.Image)
+        {
+            <img class="card-img-top" src="@tweet.Entities.MediaEntities.First().MediaUrlHttps" alt="Tweet Image" />
+            <p>@tweet.Entities.MediaEntities.First().MediaUrlHttps</p>
+        }
+        <div class="card-body">
+            <h5 class="card-title">@tweet.CreatedBy.Name</h5>
+            <h6 class="card-subtitle mb-2 text-muted">@tweet.CreatedAt</h6>
+            <p class="card-text">@tweet.Text</p>
+        </div>
+    </div>
+}
+
+
+@model Tweetinvi.Core.Models.Tweet
